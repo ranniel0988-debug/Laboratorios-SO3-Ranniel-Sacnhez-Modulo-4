@@ -1,0 +1,52 @@
+====================================================
+
+Practica 1
+
+=====================================================
+
+sudo systemctl status apache2
+sudo systemctl enable apache2
+sudo systemctl start  apache2
+cd /var/www/
+mkdir sitio1
+cd sitio1
+sudo nano index.html
+cd /etc/apache2/
+ls
+sudo port.conf
+cd site-available/
+ls
+sudo 000-deult.conf sitio1.conf
+sudo nano sitio1.conf
+sudo a2dissite 000-default.conf
+sudo a2ensite sitio1.conf
+cd /var/www/
+sudo mkdir sitio2
+cd sitio2
+sudo nano index.html
+cd /etc/apache2/sites-available/
+sudo cp sitio1.conf sitio2.conf
+sudo nano sitio2.conf
+sudo a2ensite sitio2.conf
+ip ad
+sudo systemctl tart apache2
+sudo systemctl reload apache2
+
+=====================================================
+
+Practica 3
+
+===================================================== 
+
+sudo apt install printer-driver-cups-pdf
+clear
+sudo nano /etc/cups/cupsd.conf
+sudo ufw status
+sudo ufw enable
+sudo usermod -aG lpadmin ranniel
+sudo cupsctl --remote-admin --remote-any --share-printers
+clear
+sudo systemctl restart cups
+ip ad
+lpstat -o
+history
