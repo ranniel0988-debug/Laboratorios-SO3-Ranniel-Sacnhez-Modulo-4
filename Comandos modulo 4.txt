@@ -1,6 +1,11 @@
 ====================================================
 
-Practica 1
+Practica 1: Instalar un servidor HTTP apache2/nginx (1pts)
+
+ Crear un website estatico html con la frase "Hola Mundo"
+ Crear un host virtual y ponerlo a escuchar por el puerto 80 y que al ingresar acceda al website anterior
+ Crear un website estatico html con su nombre, matricula y nombre de la materia
+ Crear un host virtual y ponerlo a escuchar por el puerto 8080 y que al ingresar acceda al website anterior
 
 =====================================================
 
@@ -45,7 +50,12 @@ sudo systemctl reload apache2
 
 =====================================================
 
-Practica 3
+Practica 3: Instalar un servidor de Impresion (1pts)
+
+   Instala un servidor de impresiones CUPS ("Common UNIX Printing System")
+   Instala una IMpresora virtual (PDF) y configurala con CUPS
+   En su PC cliente, instale la Impresora usando la IP del servidor
+   Realize una prueba imprimiento un documento de WORD, el mismo debe de salir impreso (en PDF) en nuestra impresora virtual
 
 ===================================================== 
 #
