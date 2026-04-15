@@ -80,3 +80,50 @@ ip ad
 #para agregar la impresora a windows tiene que ser hhtp y que sea generic
 lpstat -o
 history
+
+1. Actualización e Instalación
+Primero, asegúrate de que tu repositorio esté al día e instala los paquetes necesarios: postfix (el servidor) y mailutils (las herramientas para enviar correos por terminal).
+
+Bash
+sudo apt update
+sudo apt install postfix mailutils -y
+2. Configuración Inicial de Postfix
+Durante la instalación, aparecerá una ventana azul de configuración de debconf. Debes seleccionar lo siguiente:
+
+General type of mail configuration: Selecciona Internet Site.
+
+System mail name: Aquí puedes poner el nombre de tu máquina o un dominio ficticio como itla.edu.do.
+
+Si la ventana no aparece o quieres reconfigurarlo, usa:
+
+Bash
+sudo dpkg-reconfigure postfix
+3. Verificar que el servicio esté corriendo
+Asegúrate de que Postfix esté activo antes de intentar enviar nada:
+
+Bash
+sudo systemctl status postfix
+Si no está activo, inícialo: sudo systemctl start postfix.
+
+4. Enviar el correo de la práctica
+Ahora usaremos el comando mail para enviar el correo con los requisitos exactos que te pidió el maestro.
+
+Ejecuta el siguiente comando (ajustado con tus datos):
+
+Bash
+echo "Nombre: Ranniel Sánchez Espinal
+Matricula: 2025-08889" | mail -s "MambruSeFueALaGuerra" os3conadrian@gmail.com
+5. Nota Importante sobre la Entrega (Relay)
+Dado que el maestro usa una cuenta de Gmail, es muy probable que si envías el correo directamente desde tu IP local (especialmente si es residencial o de la universidad), Gmail lo rebote o lo mande a Spam porque no reconoce tu VM como un servidor seguro.
+
+Para asegurar que lo reciba:
+
+Revisa la cola de salida: Ejecuta mailq para ver si el correo salió o si está "deferred" (retenido).
+
+Revisa los logs: Si el correo no llega, mira el error en:
+
+Bash
+sudo tail -f /var/log/mail.log
+Configuración de Relay (Opcional pero recomendado): Si ves errores de "Access denied" o "SPAM", la mejor forma de que le llegue es configurar Postfix para que use el SMTP de Gmail o de otro servicio (como SendGrid) como "relay".
+
+Si el maestro permite que se vea como enviado desde tu VM sin importar s
