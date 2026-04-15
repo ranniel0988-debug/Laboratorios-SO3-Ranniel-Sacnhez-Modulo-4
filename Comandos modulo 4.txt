@@ -7,19 +7,30 @@ Practica 1
 sudo systemctl status apache2
 sudo systemctl enable apache2
 sudo systemctl start  apache2
+#este es el directorio en donde se encuentran las paginas web de 
+
 cd /var/www/
 mkdir sitio1
 cd sitio1
 sudo nano index.html
+
+# aqui se encuetra los archivos de ocnfiguracion de apache
 cd /etc/apache2/
 ls
-sudo port.conf
+sudo nano ports.conf
+
+#aqui se encuentran los archivo de configuracion de las paginas de apache
 cd site-available/
 ls
-sudo 000-deult.conf sitio1.conf
+sudo cp 000-deult.conf sitio1.conf
 sudo nano sitio1.conf
+
+#desactivar una configuracion
 sudo a2dissite 000-default.conf
+
+#activar una configuracion
 sudo a2ensite sitio1.conf
+
 cd /var/www/
 sudo mkdir sitio2
 cd sitio2
@@ -37,16 +48,25 @@ sudo systemctl reload apache2
 Practica 3
 
 ===================================================== 
-
+#
 sudo apt install printer-driver-cups-pdf
 clear
+
 sudo nano /etc/cups/cupsd.conf
+#donde dice listen localhost cambiarlo a listen 0.0.0.0
+
+#activar el firewall ufw
 sudo ufw status
 sudo ufw enable
+#hbilitar el puerto 631
+
+#dar permisos para que el usuario pueda acceder al server de impresion 
 sudo usermod -aG lpadmin ranniel
 sudo cupsctl --remote-admin --remote-any --share-printers
 clear
 sudo systemctl restart cups
 ip ad
+#crear una impresora virtual para luego agregarla a windows
+#para agregar la impresora a windows tiene que ser hhtp y que sea generic
 lpstat -o
 history
